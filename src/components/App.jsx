@@ -1,42 +1,52 @@
-import ContactList from "./ContactList/ContactList";
-import SearchBox from "./SearchBox/SearchBox";
-import ContactForm from "../ContactFrom/ContactForm";
-import { Circles } from "react-loader-spinner";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectError, selectLoading } from "../redux/contacts/selectors";
-import { fetchContacts } from "../redux/contacts/operations";
+
+import { lazy, useEffect } from "react";
+import { Layout } from "./Layout";
+import { Route, Routes } from "react-router-dom";
+import { RestrictedRoute } from "./RestrictedRoute";
+import { PrivateRoute } from "./PrivateRoute";
+
+const HomePage = lazy(() => import("../pages/Homepage/Homepage"))
+const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"))
+const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"))
+const ContactsPage = lazy(() => import("../pages/ContactsPage/ContactsPage"))
+const NotFoundPage = lazy(()=> import("../pages/Not Found/NotFound"))
+ 
+
+ 
 
 function App() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
 
   return (
-    <div className="root flex flex-col justify-center items-center  p-5">
-      <div className=" p-5 bg-gradient-to-br from-blue-300 mb-5 rounded-lg">
-        <h1 className="text-3xl mb-5 font-bold text-center">Phonebook</h1>
-        <ContactForm />
-        <SearchBox />
-      </div>
-      {isLoading && !error && (
-        <Circles
-          height="80"
-          width="80"
-          color="#4fa94d"
-          ariaLabel="circles-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegisterPage />}
+            />
+          }
         />
-      )}
-      <ContactList />
-    </div>
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Layout>
   );
 }
 
 export default App;
+
+ 
