@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { ContactList } from "../../components/ContactList/ContactList";
-import { SearchBox } from "../../components/SearchBox/SearchBox"
-import { selectError, selectLoading } from "../../redux/contacts/selectors";
 import { Circles } from "react-loader-spinner";
-import { ContactForm } from "../../components/ContactForm/ContactForm";
+import { selectError, selectLoading } from "../../redux/contacts/selectors";
+import ContactList  from "../../components/ContactList/ContactList";
+import SearchBox  from "../../components/SearchBox/SearchBox"
+import  ContactForm  from "../../components/ContactForm/ContactForm";
 
 
 
