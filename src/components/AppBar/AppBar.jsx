@@ -6,7 +6,8 @@ import AuthNav from "../AuthNav/AuthNav";
 
 export default function AppBar() {
 
-    const {isLoggedIn} = useSelector(selectIsLoggedIn)
+    const isLoggedIn  = useSelector(selectIsLoggedIn)
+    
 
     return (
         <header className="flex justify-between items-center mb-4 border-b ">

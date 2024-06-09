@@ -14,7 +14,6 @@ export default function RegisterForm() {
              name:values.name,
              email: values.email,
              password: values.password,
-           
          })
        );
        action.resetForm();
