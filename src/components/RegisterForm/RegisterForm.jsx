@@ -7,11 +7,12 @@ import { registerUser } from "../../redux/auth/operations";
 export default function RegisterForm() {
     const dispatch = useDispatch()
 
-     const handleSubmit = (values, action) => {
+  const handleSubmit = (values, action) => {
+       console.log(values);
        dispatch(
            registerUser({
              name:values.name,
-           email: values.email,
+             email: values.email,
              password: values.password,
            
          })
@@ -21,11 +22,14 @@ export default function RegisterForm() {
 
 
   return (
-    <Formik initialValues={{ email: "", password: "",name:"" }} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={{ email: "", password: "", name: "" }}
+      onSubmit={handleSubmit}
+    >
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Create your account
           </h2>
         </div>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -42,7 +46,7 @@ export default function RegisterForm() {
                   type="text"
                   name="name"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                 />
               </div>
             </div>
@@ -58,7 +62,7 @@ export default function RegisterForm() {
                   type="email"
                   name="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                 />
               </div>
             </div>
@@ -77,7 +81,7 @@ export default function RegisterForm() {
                   type="password"
                   name="password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                 />
               </div>
             </div>
