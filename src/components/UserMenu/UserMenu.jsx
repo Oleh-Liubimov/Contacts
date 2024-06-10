@@ -8,9 +8,12 @@ export default function UserMenu() {
   const user = useSelector(selectUser)
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 px-5">
       <p className="font-semibold">Welcome, {user.name}</p>
-      <button type="button" onClick={()=>dispatch(logOutUser())} >Logout</button>
+      <button
+        className="p-2 bg-red-400 rounded hover:bg-red-500 "
+        type="button"
+        onClick={() => dispatch(logOutUser())} >Logout</button>
     </div>
   )
 }

@@ -6,11 +6,6 @@ export default function Contact({ data }) {
   return (
     <div className="flex flex-col gap-6 w-60 items-center rounded p-5 bg-gradient-to-b from-yellow-300">
       <div className="">
-        <img
-          src={data.avatar ? data.avatar : "/src/assets/boy-min.png"}
-          alt=""
-          className="mx-auto rounded"
-        />
         <p className="text-center font-semibold pt-1">{data.name}</p>
         <p className="text-center">{data.number}</p>
       </div>

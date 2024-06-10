@@ -60,7 +60,7 @@ export default function ContactForm() {
         <button
           type="submit"
           className="bg-green-500 
-            border rounded border-slate-950 h-7 p-1 flex justify-center
+            border rounded h-7 p-1 flex justify-center
             items-center hover:bg-green-600 transition-all"
         >
           Add contact

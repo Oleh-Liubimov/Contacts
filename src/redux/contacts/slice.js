@@ -3,6 +3,7 @@ import { addContact, deleteContact, fetchContacts } from "./operations";
 import { selectContacts } from "./selectors";
 import { selectFilterName } from "../filters/selectors";
 import { deleteContactNotify,createContactNotify } from "../../Notifications";
+import { logOutUser } from "../auth/operations";
 
 const handleLoading = (state) => {
   state.loading = true;
@@ -58,7 +59,12 @@ const contactsSlice = createSlice({
         state.items.splice(index, 1);
         deleteContactNotify()
       })
-      .addCase(deleteContact.rejected, handleReject);
+      .addCase(deleteContact.rejected, handleReject)
+      .addCase(logOutUser.fulfilled, state => {
+        state.items = [];
+        state.error = false;
+        state.loading = false;
+    })
   },
 });
 
