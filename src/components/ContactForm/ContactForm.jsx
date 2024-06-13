@@ -4,6 +4,7 @@ import { ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import * as Yup from "yup";
+import { createContactNotify } from "../../Notifications";
 
 const objSchema = Yup.object().shape({
   name: Yup.string()
@@ -24,7 +25,10 @@ export default function ContactForm() {
   const nameId = useId();
   const numberId = useId();
   const handleSubmit = (values, actions) => {
-    dispatch(addContact({ name: values.name, number: values.number }));
+    dispatch(addContact({ name: values.name, number: values.number })).unwrap().then(() => {
+      createContactNotify()
+    })
+    
     actions.resetForm();
   };
 

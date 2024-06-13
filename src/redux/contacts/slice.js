@@ -46,7 +46,6 @@ const contactsSlice = createSlice({
         state.loading = false;
         state.error = false;
         state.items.push(action.payload);
-        createContactNotify()
       })
       .addCase(addContact.rejected, handleReject)
       .addCase(deleteContact.pending, handleLoading)
@@ -57,7 +56,7 @@ const contactsSlice = createSlice({
           (contact) => contact.id === action.payload.id
         );
         state.items.splice(index, 1);
-        deleteContactNotify()
+        
       })
       .addCase(deleteContact.rejected, handleReject)
       .addCase(logOutUser.fulfilled, state => {

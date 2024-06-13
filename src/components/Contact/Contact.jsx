@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
+import { deleteContactNotify } from "../../Notifications";
 
 export default function Contact({ data }) {
   const dispatch = useDispatch();
@@ -14,7 +15,9 @@ export default function Contact({ data }) {
         className="bg-red-400
             border rounded  h-7 p-3 border-none flex justify-center
             items-center hover:bg-red-500 transition-all"
-        onClick={() => dispatch(deleteContact(data.id))}
+        onClick={() => dispatch(deleteContact(data.id)).unwrap().then(() => {
+          deleteContactNotify()
+        })}
       >
         Delete
       </button>
